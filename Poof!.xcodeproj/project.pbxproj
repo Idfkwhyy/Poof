@@ -11,6 +11,10 @@
 		6A732D182F0EB98E009350EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D172F0EB98E009350EC /* ContentView.swift */; };
 		6A732D1A2F0EB990009350EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A732D192F0EB990009350EC /* Assets.xcassets */; };
 		6A732D1D2F0EB990009350EC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A732D1C2F0EB990009350EC /* Preview Assets.xcassets */; };
+		6A732D262F0EBA22009350EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D252F0EBA22009350EC /* AppDelegate.swift */; };
+		6A732D282F0EBA38009350EC /* DockMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D272F0EBA38009350EC /* DockMonitor.swift */; };
+		6A732D2A2F0EBA4A009350EC /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D292F0EBA4A009350EC /* MenuBarController.swift */; };
+		6A732D2C2F0EBA59009350EC /* PoofWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D2B2F0EBA59009350EC /* PoofWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,11 @@
 		6A732D192F0EB990009350EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A732D1C2F0EB990009350EC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6A732D1E2F0EB990009350EC /* Poof_.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Poof_.entitlements; sourceTree = "<group>"; };
+		6A732D242F0EB9EF009350EC /* Poof--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Poof--Info.plist"; sourceTree = SOURCE_ROOT; };
+		6A732D252F0EBA22009350EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6A732D272F0EBA38009350EC /* DockMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockMonitor.swift; sourceTree = "<group>"; };
+		6A732D292F0EBA4A009350EC /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
+		6A732D2B2F0EBA59009350EC /* PoofWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoofWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,10 +61,15 @@
 		6A732D142F0EB98E009350EC /* Poof! */ = {
 			isa = PBXGroup;
 			children = (
-				6A732D152F0EB98E009350EC /* Poof_App.swift */,
-				6A732D172F0EB98E009350EC /* ContentView.swift */,
+				6A732D252F0EBA22009350EC /* AppDelegate.swift */,
 				6A732D192F0EB990009350EC /* Assets.xcassets */,
+				6A732D172F0EB98E009350EC /* ContentView.swift */,
+				6A732D272F0EBA38009350EC /* DockMonitor.swift */,
+				6A732D292F0EBA4A009350EC /* MenuBarController.swift */,
 				6A732D1E2F0EB990009350EC /* Poof_.entitlements */,
+				6A732D152F0EB98E009350EC /* Poof_App.swift */,
+				6A732D242F0EB9EF009350EC /* Poof--Info.plist */,
+				6A732D2B2F0EBA59009350EC /* PoofWindow.swift */,
 				6A732D1B2F0EB990009350EC /* Preview Content */,
 			);
 			path = "Poof!";
@@ -139,8 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A732D262F0EBA22009350EC /* AppDelegate.swift in Sources */,
+				6A732D282F0EBA38009350EC /* DockMonitor.swift in Sources */,
 				6A732D182F0EB98E009350EC /* ContentView.swift in Sources */,
 				6A732D162F0EB98E009350EC /* Poof_App.swift in Sources */,
+				6A732D2A2F0EBA4A009350EC /* MenuBarController.swift in Sources */,
+				6A732D2C2F0EBA59009350EC /* PoofWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,11 +292,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Poof--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.leonardomunarolo.Poof-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,11 +321,13 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Poof--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.leonardomunarolo.Poof-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
