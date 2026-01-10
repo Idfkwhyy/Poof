@@ -5,7 +5,6 @@ class MenuBarController: NSObject {
     private var statusItem: NSStatusItem?
     
     func setup() {
-        // Create status bar item
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
         if let button = statusItem?.button {
@@ -14,7 +13,6 @@ class MenuBarController: NSObject {
             button.target = self
         }
         
-        // Create menu
         updateMenu()
     }
     
@@ -27,20 +25,17 @@ class MenuBarController: NSObject {
         
         menu.addItem(NSMenuItem.separator())
         
-        // Add permission menu item
         let permissionItem = NSMenuItem(title: "Accessibility Permission", action: #selector(requestPermissions), keyEquivalent: "")
         permissionItem.target = self
         permissionItem.state = AXIsProcessTrusted() ? .on : .off
         menu.addItem(permissionItem)
         
-        // Add Launch at Login toggle
         let launchAtLoginItem = NSMenuItem(title: "Launch at Login", action: #selector(toggleLaunchAtLogin), keyEquivalent: "")
         launchAtLoginItem.target = self
         menu.addItem(launchAtLoginItem)
         
         menu.addItem(NSMenuItem.separator())
         
-        // Quit App
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         
         statusItem?.menu = menu
@@ -65,7 +60,6 @@ class MenuBarController: NSObject {
     func updatePermissionStatus() {
         guard let menu = statusItem?.menu else { return }
         
-        // Find the permission menu item (it's at index 2)
         if menu.items.count > 2 {
             let permissionItem = menu.items[2]
             let isEnabled = AXIsProcessTrusted()
@@ -74,7 +68,6 @@ class MenuBarController: NSObject {
             permissionItem.state = isEnabled ? .on : .off
         }
         
-        // Update icon
         updateMenuBarIcon()
     }
     
@@ -100,8 +93,6 @@ class MenuBarController: NSObject {
         
         let contentView = NSView(frame: NSMakeRect(0, 0, windowWidth, windowHeight))
         
-        // ---- Dynamic values ----
-        
         let info = Bundle.main.infoDictionary
         
         let appName =
@@ -117,8 +108,6 @@ class MenuBarController: NSObject {
         
         let developer =
             info?["DeveloperName"] as? String ?? "Unknown Developer"
-        
-        // ---- Layout ----
         
         let iconSize: CGFloat = 60
         let spacing: CGFloat = 4
@@ -207,7 +196,6 @@ class MenuBarController: NSObject {
                     NSWorkspace.shared.open(url)
                 }
                 
-                // Notify app delegate to recheck
                 if let appDelegate = NSApplication.shared.delegate as? AppDelegate {
                     appDelegate.recheckAccessibilityPermissions()
                 }
@@ -216,7 +204,6 @@ class MenuBarController: NSObject {
     }
     
     @objc func toggleLaunchAtLogin() {
-        // Always show manual instructions
         showManualLaunchAtLoginInstructions()
     }
     
@@ -231,14 +218,11 @@ class MenuBarController: NSObject {
         let response = alert.runModal()
         
         if response == .alertFirstButtonReturn {
-            // Open Login Items in System Preferences/Settings
             if #available(macOS 13.0, *) {
-                // macOS 13+ uses new Settings URL
                 if let url = URL(string: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension") {
                     NSWorkspace.shared.open(url)
                 }
             } else {
-                // macOS 12 and earlier
                 let script = """
                 tell application "System Preferences"
                     activate

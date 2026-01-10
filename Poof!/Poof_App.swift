@@ -7,7 +7,6 @@ struct Poof_App: App {
     private var appDelegate
 
     var body: some Scene {
-        // No windows; menu bar app only
         Settings {
             EmptyView()
                 .hidden()

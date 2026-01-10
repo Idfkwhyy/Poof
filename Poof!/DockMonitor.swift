@@ -11,12 +11,10 @@ class DockMonitor {
     private var dockPID: pid_t = 0
     private var isHoveringDock = false
     
-    // Distance threshold for removing items from Dock (in points)
     private let removeThreshold: CGFloat = 100.0
     
     func startMonitoring() {
         
-        // Get Dock process ID
         if let dockApp = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.dock").first {
             dockPID = dockApp.processIdentifier
         }
@@ -100,9 +98,7 @@ class DockMonitor {
         guard let screen = NSScreen.main else { return }
         let dockRect = getDockRect(for: screen)
         
-        // Only trigger poof if dragged beyond the remove threshold
         if !dockRect.contains(location) && isBeyondRemoveThreshold(location, dockRect: dockRect) {
-            // Use magnified size since user was hovering to drag
             let iconSize = getDockIconSize(magnified: true)
             showPoofAnimation(at: location, size: iconSize)
         } else {
@@ -118,17 +114,14 @@ class DockMonitor {
         
         switch dockOrientation {
         case .bottom:
-            // For bottom Dock, check vertical distance from top of Dock
             let distanceFromDock = location.y - dockRect.maxY
             return distanceFromDock > removeThreshold
             
         case .left:
-            // For left Dock, check horizontal distance from right edge of Dock
             let distanceFromDock = location.x - dockRect.maxX
             return distanceFromDock > removeThreshold
             
         case .right:
-            // For right Dock, check horizontal distance from left edge of Dock
             let distanceFromDock = dockRect.minX - location.x
             return distanceFromDock > removeThreshold
         }

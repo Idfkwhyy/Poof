@@ -7,7 +7,6 @@ class PoofWindow: NSWindow {
     private var animationTimer: Timer?
     
     init(at point: NSPoint, size: CGFloat = 128) {
-        // Create window at cursor position
         let windowRect = NSRect(x: point.x - size/2, y: point.y - size/2, width: size, height: size)
             
         super.init(contentRect: windowRect,
@@ -49,14 +48,12 @@ class PoofWindow: NSWindow {
         
         print("Image size: \(imageWidth)x\(imageHeight)")
         
-        // 5 frames arranged vertically: 128x640 total, each frame is 128x128
         let frameCount = 5
         let frameWidth = imageWidth
         let frameHeight = imageHeight / frameCount
         
         print("Frame size: \(frameWidth)x\(frameHeight)")
         
-        // Extract frames from bottom to top (CGImage uses bottom-left origin)
         for i in 0..<frameCount {
             let yPosition = i * frameHeight
             let frameRect = NSRect(x: 0, y: yPosition, width: frameWidth, height: frameHeight)
@@ -75,24 +72,20 @@ class PoofWindow: NSWindow {
     private func extractFrame(from image: NSImage, rect: NSRect, imageSize: NSSize) -> NSImage? {
         let frameSize = NSSize(width: rect.width, height: rect.height)
         
-        // Get CGImage from NSImage
         guard let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) else {
             return nil
         }
         
-        // Calculate the rect in CGImage coordinates (bottom-left origin)
         let scale = CGFloat(cgImage.width) / imageSize.width
         let cgRect = CGRect(x: rect.origin.x * scale,
                            y: rect.origin.y * scale,
                            width: rect.width * scale,
                            height: rect.height * scale)
         
-        // Crop the frame
         guard let croppedCGImage = cgImage.cropping(to: cgRect) else {
             return nil
         }
         
-        // Convert back to NSImage
         let croppedImage = NSImage(cgImage: croppedCGImage, size: frameSize)
         return croppedImage
     }
@@ -118,19 +111,14 @@ class PoofWindow: NSWindow {
                 self.imageView?.image = self.animationFrames[self.currentFrame]
                 self.currentFrame += 1
                 
-                // Check if this was the LAST frame
                 if self.currentFrame == self.animationFrames.count {
                     print("Last frame displayed, will complete after one more cycle")
-                    // Let the last frame display for one full frame duration
-                    // Don't invalidate yet - let it display
                 }
             } else {
-                // Now we've shown the last frame for a full cycle
                 print("Animation complete, invalidating timer")
                 timer.invalidate()
                 self.animationTimer = nil
                 
-                // Call completion immediately since last frame already displayed
                 print("Calling completion block")
                 completion()
             }

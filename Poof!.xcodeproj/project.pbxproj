@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6A3434DB2F12FC4D00FF5221 /* Poof--Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6A732D242F0EB9EF009350EC /* Poof--Info.plist */; };
 		6A732D162F0EB98E009350EC /* Poof_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D152F0EB98E009350EC /* Poof_App.swift */; };
 		6A732D182F0EB98E009350EC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A732D172F0EB98E009350EC /* ContentView.swift */; };
 		6A732D1A2F0EB990009350EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A732D192F0EB990009350EC /* Assets.xcassets */; };
@@ -143,6 +144,7 @@
 			files = (
 				6A732D1D2F0EB990009350EC /* Preview Assets.xcassets in Resources */,
 				6A732D1A2F0EB990009350EC /* Assets.xcassets in Resources */,
+				6A3434DB2F12FC4D00FF5221 /* Poof--Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
