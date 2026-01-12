@@ -6,13 +6,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var dockMonitor: DockMonitor?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        NSApp.setActivationPolicy(.accessory)
-
-        if let window = NSApplication.shared.windows.first {
-            window.setIsVisible(false)
-        }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            NSApp.setActivationPolicy(.accessory)
             self.startApplication()
         }
     }
